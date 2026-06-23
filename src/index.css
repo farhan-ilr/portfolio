@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: #0a0a0f;
+    color: #e2e8f0;
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: #6c63ff40;
+    color: #e2e8f0;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0a0f;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #6c63ff;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-muted text-center text-base md:text-lg mb-16 max-w-2xl mx-auto;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 bg-accent hover:bg-accent-light text-white font-semibold rounded-xl
+           transition-all duration-300 hover:shadow-lg hover:shadow-accent/30
+           hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply px-6 py-3 border border-accent text-accent hover:bg-accent hover:text-white
+           font-semibold rounded-xl transition-all duration-300
+           hover:shadow-lg hover:shadow-accent/30 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .card {
+    @apply bg-surface border border-white/5 rounded-2xl p-6
+           hover:border-accent/30 transition-all duration-300
+           hover:shadow-xl hover:shadow-accent/10;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-accent to-purple-400 bg-clip-text text-transparent;
+  }
+
+  .glow {
+    text-shadow: 0 0 40px rgba(108, 99, 255, 0.5);
+  }
+}
+
+@layer utilities {
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(108, 99, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(108, 99, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
