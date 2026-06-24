@@ -123,5 +123,6 @@ export const CONTACT_INFO = {
   email: 'farhanilr4@gmail.com',
   github: 'https://github.com/farhan-ilr',
   linkedin: 'https://www.linkedin.com/in/farhan-nazar/',
+  instagram: 'https://instagram.com/_f_arhan_',
   location: 'Kottakkal, Malappuram, Kerala, India',
 }
