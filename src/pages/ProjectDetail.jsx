@@ -54,7 +54,7 @@ export default function ProjectDetail() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="relative w-full aspect-video rounded-2xl overflow-hidden border border-border mb-10
-                     bg-gradient-to-br from-emerald-600/10 via-card to-card-2"
+                     bg-gradient-to-br from-white/5 via-card to-card-2"
         >
           <div className="absolute inset-0 bg-grid-black opacity-40" />
           {project.image ? (

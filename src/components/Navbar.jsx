@@ -2,12 +2,11 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { HiMenuAlt3, HiX } from 'react-icons/hi'
-import { FiBriefcase } from 'react-icons/fi'
 import { NAV_LINKS } from '../utils/constants'
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled,  setScrolled]  = useState(false)
+  const [menuOpen,  setMenuOpen]  = useState(false)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60)
@@ -22,31 +21,22 @@ export default function Navbar() {
       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? 'bg-black/80 backdrop-blur-xl border-b border-border shadow-2xl'
+          ? 'bg-black/85 backdrop-blur-xl border-b border-border'
           : 'bg-transparent'
       }`}
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
 
-          {/* Logo */}
-          <Link to="hero" smooth duration={600} className="cursor-pointer group flex items-center gap-3">
-            {/* Monogram badge */}
-            <div className="relative w-9 h-9 rounded-xl bg-gradient-to-br from-accent to-accent-2
-                            flex items-center justify-center shadow-glow-sm flex-shrink-0
-                            group-hover:scale-105 transition-transform duration-300">
-              <span className="text-white font-black text-sm font-mono leading-none">FA</span>
-              {/* Ping dot */}
-              <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-black" />
-            </div>
-            {/* Name + title stack */}
-            <div className="hidden sm:flex flex-col leading-tight">
-              <span className="text-white font-bold text-sm tracking-wide">Farhan</span>
-              <span className="text-muted font-mono text-[10px] tracking-widest">Flutter Dev</span>
-            </div>
+          {/* ── Logo ── */}
+          <Link to="hero" smooth duration={600} className="cursor-pointer group">
+            <span className="font-mono font-bold text-lg tracking-tight">
+              <span className="text-white group-hover:text-accent-light transition-colors duration-300">farhan</span>
+              <span className="text-accent">.</span>
+            </span>
           </Link>
 
-          {/* Desktop Nav */}
+          {/* ── Desktop Nav ── */}
           <ul className="hidden md:flex items-center gap-1">
             {NAV_LINKS.map((link) => (
               <li key={link.to}>
@@ -57,16 +47,19 @@ export default function Navbar() {
                   offset={-80}
                   spy
                   activeClass="active-nav"
-                  className="relative px-4 py-2 text-sm text-muted hover:text-white transition-colors duration-200 cursor-pointer rounded-lg hover:bg-white/5 group"
+                  className="relative px-4 py-2 text-sm text-muted hover:text-white
+                             transition-colors duration-200 cursor-pointer rounded-lg
+                             hover:bg-white/5 group"
                 >
                   {link.label}
-                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-px bg-accent group-hover:w-4 transition-all duration-300" />
+                  <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-px
+                                   bg-accent group-hover:w-4 transition-all duration-300" />
                 </Link>
               </li>
             ))}
           </ul>
 
-          {/* CTA */}
+          {/* ── Hire Me CTA ── */}
           <Link to="contact" smooth duration={600} offset={-80} className="hidden md:block">
             <motion.button
               whileHover={{ scale: 1.04 }}
@@ -77,46 +70,42 @@ export default function Navbar() {
               {/* Spinning gradient border */}
               <span className="absolute inset-0 rounded-xl overflow-hidden">
                 <span className="absolute inset-[-50%] animate-spin-slow
-                                 bg-[conic-gradient(from_0deg,#10b981,#0ea5e9,#34d399,#10b981)]
+                                 bg-[conic-gradient(from_0deg,#e11d48,#fb7185,#f43f5e,#e11d48)]
                                  opacity-80" />
               </span>
-              {/* Dark fill inset */}
               <span className="absolute inset-[1.5px] rounded-[10px] bg-black group-hover:bg-card transition-colors duration-300" />
-              {/* Label */}
-              <span className="relative flex items-center gap-1.5">
-                <FiBriefcase size={13} className="text-accent-light" />
-                Hire Me
-              </span>
+              <span className="relative">Hire Me</span>
             </motion.button>
           </Link>
 
-          {/* Mobile toggle */}
+          {/* ── Mobile toggle ── */}
           <button
-            className="md:hidden w-10 h-10 rounded-lg border border-border flex items-center justify-center text-muted hover:text-white hover:border-accent/40 transition-all"
+            className="md:hidden w-9 h-9 rounded-lg border border-border flex items-center
+                       justify-center text-muted hover:text-white hover:border-accent/40 transition-all"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            {menuOpen ? <HiX size={20} /> : <HiMenuAlt3 size={20} />}
+            {menuOpen ? <HiX size={18} /> : <HiMenuAlt3 size={18} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* ── Mobile menu ── */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -12, scale: 0.97 }}
+            initial={{ opacity: 0, y: -10, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -12, scale: 0.97 }}
-            transition={{ duration: 0.25, ease: 'easeOut' }}
+            exit={{ opacity: 0, y: -10, scale: 0.97 }}
+            transition={{ duration: 0.22, ease: 'easeOut' }}
             className="md:hidden mx-4 mb-4 rounded-2xl bg-card border border-border overflow-hidden"
           >
             <ul className="flex flex-col p-3 gap-1">
               {NAV_LINKS.map((link, i) => (
                 <motion.li
                   key={link.to}
-                  initial={{ opacity: 0, x: -16 }}
+                  initial={{ opacity: 0, x: -14 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+                  transition={{ delay: i * 0.04 }}
                 >
                   <Link
                     to={link.to}
@@ -124,7 +113,8 @@ export default function Navbar() {
                     duration={600}
                     offset={-80}
                     onClick={() => setMenuOpen(false)}
-                    className="block px-4 py-3 rounded-xl text-muted hover:text-white hover:bg-white/5 text-sm font-medium transition-all cursor-pointer"
+                    className="block px-4 py-3 rounded-xl text-muted hover:text-white
+                               hover:bg-white/5 text-sm font-medium transition-all cursor-pointer"
                   >
                     {link.label}
                   </Link>
@@ -136,11 +126,10 @@ export default function Navbar() {
                   smooth
                   duration={600}
                   onClick={() => setMenuOpen(false)}
-                  className="flex items-center justify-center gap-2 w-full text-sm py-3 px-4
-                             rounded-xl bg-accent hover:bg-accent-light text-white font-semibold
-                             transition-colors cursor-pointer shadow-glow-sm"
+                  className="flex items-center justify-center w-full text-sm py-3 px-4
+                             rounded-xl bg-accent text-white font-semibold
+                             transition-colors cursor-pointer hover:bg-accent-2"
                 >
-                  <FiBriefcase size={14} />
                   Hire Me
                 </Link>
               </li>

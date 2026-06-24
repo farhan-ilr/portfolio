@@ -8,7 +8,6 @@ const stats = [
   { value: '50K+', label: 'App Downloads' },
 ]
 
-const domains = ['Custom LMS', 'CRM & ERP', 'E-Commerce', 'Healthcare', 'Wellness']
 const tags    = ['Flutter', 'Dart', 'Android (Kotlin)', 'Firebase', 'REST APIs', 'GetX', 'Riverpod']
 
 export default function About() {
@@ -19,7 +18,7 @@ export default function About() {
       {/* Subtle background glow */}
       <div className="absolute inset-0 bg-grid-black opacity-40 pointer-events-none" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-48 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%)' }} />
+        style={{ background: 'radial-gradient(ellipse, rgba(225,29,72,0.05) 0%, transparent 70%)' }} />
 
       <div ref={ref} className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -40,25 +39,6 @@ export default function About() {
             </h2>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="flex flex-wrap gap-1.5 sm:justify-end max-w-xs"
-          >
-            {domains.map((d, i) => (
-              <motion.span
-                key={d}
-                initial={{ opacity: 0, scale: 0.85 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                transition={{ delay: 0.2 + i * 0.06 }}
-                className="px-2.5 py-1 text-[11px] rounded-lg border border-border bg-card
-                           text-muted font-medium"
-              >
-                {d}
-              </motion.span>
-            ))}
-          </motion.div>
         </div>
 
         {/* Animated divider */}

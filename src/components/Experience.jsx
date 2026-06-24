@@ -100,9 +100,9 @@ export default function Experience() {
                       </div>
                       {exp.current && (
                         <span className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg
-                                         bg-emerald-500/10 text-emerald-400 text-xs
-                                         border border-emerald-500/20 font-medium">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                         bg-accent/15 text-accent-light text-xs
+                                         border border-accent/25 font-medium">
+                          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                           Active
                         </span>
                       )}

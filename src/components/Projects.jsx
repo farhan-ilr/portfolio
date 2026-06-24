@@ -17,7 +17,7 @@ function ProjectCard({ project, index, isInView }) {
                  hover:border-accent/30 transition-all duration-300 hover:shadow-glow-sm"
     >
       {/* 16:9 Image / Placeholder */}
-      <div className="relative w-full aspect-video bg-gradient-to-br from-emerald-600/10 via-card to-card-2
+      <div className="relative w-full aspect-video bg-gradient-to-br from-white/5 via-card to-card-2
                       overflow-hidden">
         <div className="absolute inset-0 bg-grid-black opacity-40" />
 
@@ -116,7 +116,7 @@ export default function Projects() {
     <section id="projects" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-black opacity-60 pointer-events-none" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-64 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%)' }} />
+        style={{ background: 'radial-gradient(ellipse, rgba(225,29,72,0.05) 0%, transparent 70%)' }} />
 
       <div ref={ref} className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
