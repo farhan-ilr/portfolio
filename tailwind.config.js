@@ -7,36 +7,57 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#0a0a0f',
-        secondary: '#12121a',
-        accent: '#6c63ff',
-        'accent-light': '#8b85ff',
-        surface: '#1a1a2e',
-        text: '#e2e8f0',
-        muted: '#94a3b8',
+        primary:        '#000000',
+        secondary:      '#0c0c0c',
+        card:           '#111111',
+        'card-2':       '#161616',
+        border:         '#1f1f1f',
+        accent:         '#2563eb',
+        'accent-light': '#60a5fa',
+        'accent-2':     '#0ea5e9',
+        muted:          '#71717a',
+        text:           '#fafafa',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['Fira Code', 'monospace'],
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'gradient-conic':  'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+      },
       animation: {
-        'float': 'float 6s ease-in-out infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'gradient': 'gradient 8s ease infinite',
+        'spin-slow':   'spin 8s linear infinite',
+        'float':       'float 6s ease-in-out infinite',
+        'float-delay': 'float 7s ease-in-out 1s infinite',
+        'glow-pulse':  'glowPulse 3s ease-in-out infinite',
+        'shimmer':     'shimmer 2.5s linear infinite',
+        'border-spin': 'borderSpin 4s linear infinite',
       },
       keyframes: {
         float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-20px)' },
+          '0%,100%': { transform: 'translateY(0px) scale(1)' },
+          '50%':     { transform: 'translateY(-24px) scale(1.03)' },
         },
-        gradient: {
-          '0%, 100%': { backgroundPosition: '0% 50%' },
-          '50%': { backgroundPosition: '100% 50%' },
-        }
+        glowPulse: {
+          '0%,100%': { opacity: '0.6', transform: 'scale(1)' },
+          '50%':     { opacity: '1',   transform: 'scale(1.05)' },
+        },
+        shimmer: {
+          '0%':   { backgroundPosition: '-200% center' },
+          '100%': { backgroundPosition: '200% center' },
+        },
+        borderSpin: {
+          '0%':   { transform: 'rotate(0deg)' },
+          '100%': { transform: 'rotate(360deg)' },
+        },
       },
-      backgroundSize: {
-        '300%': '300%',
-      }
+      boxShadow: {
+        'glow':    '0 0 40px rgba(37,99,235,0.35)',
+        'glow-sm': '0 0 20px rgba(37,99,235,0.2)',
+        'glow-lg': '0 0 80px rgba(37,99,235,0.45)',
+        'glow-2':  '0 0 40px rgba(14,165,233,0.25)',
+      },
     },
   },
   plugins: [],

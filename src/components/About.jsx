@@ -1,117 +1,112 @@
 import { motion } from 'framer-motion'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
-import { FiCode, FiSmartphone, FiLayers } from 'react-icons/fi'
 
 const stats = [
-  { label: 'Years Experience', value: '3+' },
-  { label: 'Projects Delivered', value: '70+' },
-  { label: 'Happy Clients', value: '30+' },
-  { label: 'App Downloads', value: '50K+' },
-]
-
-const traits = [
-  { icon: FiSmartphone, title: 'Mobile-First', desc: 'Building native-feel apps for iOS & Android from a single codebase.' },
-  { icon: FiCode, title: 'Clean Code', desc: 'Following SOLID principles and design patterns for maintainable code.' },
-  { icon: FiLayers, title: 'Architecture', desc: 'Experienced in BLoC, GetX, Riverpod, and Clean Architecture.' },
+  { value: '3+',   label: 'Years Experience' },
+  { value: '70+',  label: 'Apps Delivered' },
+  { value: '30+',  label: 'Happy Clients' },
+  { value: '50K+', label: 'App Downloads' },
 ]
 
 export default function About() {
   const { ref, isInView } = useScrollAnimation()
 
   return (
-    <section id="about" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
+    <section id="about" className="py-24 md:py-32 bg-secondary">
+      <div ref={ref} className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-14"
         >
-          <p className="text-accent font-mono text-sm text-center mb-2">// who am I</p>
-          <h2 className="section-title">
-            About <span className="gradient-text">Me</span>
+          <p className="section-label">about me</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Who <span className="gradient-text">I Am</span>
           </h2>
-          <p className="section-subtitle">
-            Turning ideas into polished, production-ready mobile experiences.
+        </motion.div>
+
+        {/* Bio */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="space-y-4 text-muted text-base leading-loose mb-12 text-center"
+        >
+          <p>
+            I&apos;m <span className="text-white font-semibold">Farhan</span>, a Flutter &amp; Native Android Developer
+            with <span className="text-accent-light font-semibold">3+ years</span> of experience building
+            apps that are fast, beautiful, and easy to use.
+          </p>
+          <p>
+            At <span className="text-white font-semibold">Trogon Media</span>, I&apos;ve shipped over
+            <span className="text-accent-light font-semibold"> 70 production apps</span> — from e-commerce
+            and fintech to healthcare and social platforms. I care deeply about clean architecture,
+            smooth performance, and pixel-perfect UI.
           </p>
         </motion.div>
 
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-          {/* Text */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="space-y-5"
-          >
-            <p className="text-muted text-base md:text-lg leading-relaxed">
-              I&apos;m <span className="text-white font-semibold">Farhan A</span>, a passionate Flutter Developer
-              with over <span className="text-accent font-semibold">3 years of experience</span> building
-              high-quality cross-platform mobile applications.
-            </p>
-            <p className="text-muted text-base md:text-lg leading-relaxed">
-              At <span className="text-white font-semibold">Trogon Media</span>, I&apos;ve had the opportunity
-              to work on <span className="text-accent font-semibold">70+ projects</span> spanning e-commerce,
-              healthcare, fintech, and social platforms — gaining deep expertise in complex state management,
-              real-time data, and custom UI components.
-            </p>
-            <p className="text-muted text-base md:text-lg leading-relaxed">
-              I believe great apps are built at the intersection of beautiful design and solid engineering.
-              When I&apos;m not coding, I explore new Flutter packages, contribute to open source, and keep up
-              with the latest mobile development trends.
-            </p>
-          </motion.div>
-
-          {/* Traits */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="space-y-4"
-          >
-            {traits.map((trait, i) => (
-              <motion.div
-                key={trait.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                className="card flex items-start gap-4"
-              >
-                <div className="w-11 h-11 rounded-xl bg-accent/15 flex items-center justify-center flex-shrink-0">
-                  <trait.icon size={22} className="text-accent" />
-                </div>
-                <div>
-                  <h3 className="text-white font-semibold mb-1">{trait.title}</h3>
-                  <p className="text-muted text-sm leading-relaxed">{trait.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Stats */}
+        {/* Divider */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          style={{ originX: 0.5 }}
+          className="h-px bg-gradient-to-r from-transparent via-border to-transparent mb-12"
+        />
+
+        {/* Stats row */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4"
+          transition={{ duration: 0.6, delay: 0.35 }}
+          className="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center"
         >
-          {stats.map((stat, i) => (
+          {stats.map((s, i) => (
             <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
-              className="card text-center"
+              key={s.label}
+              initial={{ opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.4 + i * 0.08 }}
             >
-              <div className="text-3xl md:text-4xl font-extrabold gradient-text mb-2">{stat.value}</div>
-              <div className="text-muted text-sm">{stat.label}</div>
+              <div className="text-2xl md:text-3xl font-extrabold gradient-text mb-1">{s.value}</div>
+              <div className="text-muted text-xs tracking-wide">{s.label}</div>
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Divider */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={isInView ? { scaleX: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.55 }}
+          style={{ originX: 0.5 }}
+          className="h-px bg-gradient-to-r from-transparent via-border to-transparent mt-12 mb-12"
+        />
+
+        {/* Tech tags */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="flex flex-wrap justify-center gap-2"
+        >
+          {['Flutter', 'Dart', 'Android (Kotlin)', 'Firebase', 'REST APIs', 'GetX', 'Riverpod'].map((tag, i) => (
+            <motion.span
+              key={tag}
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.35, delay: 0.65 + i * 0.05 }}
+              className="px-3 py-1.5 text-xs rounded-lg border border-border bg-card
+                         text-muted hover:text-white hover:border-accent/40 transition-all duration-200"
+            >
+              {tag}
+            </motion.span>
+          ))}
+        </motion.div>
+
       </div>
     </section>
   )

@@ -1,162 +1,152 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
-import { FiMail, FiGithub, FiLinkedin, FiMapPin, FiSend } from 'react-icons/fi'
+import { FiMail, FiGithub, FiLinkedin, FiMapPin, FiSend, FiCheck } from 'react-icons/fi'
 import { CONTACT_INFO } from '../utils/constants'
 
-const contactItems = [
-  { icon: FiMail, label: 'Email', value: CONTACT_INFO.email, href: `mailto:${CONTACT_INFO.email}` },
-  { icon: FiGithub, label: 'GitHub', value: 'github.com/farhan', href: CONTACT_INFO.github },
-  { icon: FiLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/farhan', href: CONTACT_INFO.linkedin },
-  { icon: FiMapPin, label: 'Location', value: CONTACT_INFO.location, href: null },
+const info = [
+  { icon: FiMail,     label: 'Email',    value: CONTACT_INFO.email,           href: `mailto:${CONTACT_INFO.email}` },
+  { icon: FiGithub,   label: 'GitHub',   value: 'github.com/farhan',          href: CONTACT_INFO.github },
+  { icon: FiLinkedin, label: 'LinkedIn', value: 'linkedin.com/in/farhan',     href: CONTACT_INFO.linkedin },
+  { icon: FiMapPin,   label: 'Location', value: CONTACT_INFO.location,        href: null },
 ]
 
 export default function Contact() {
   const { ref, isInView } = useScrollAnimation()
   const [form, setForm] = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState(null)
+  const [sent, setSent] = useState(false)
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e) => {
+  const onSubmit = (e) => {
     e.preventDefault()
-    // TODO: wire up to EmailJS, Formspree, or your preferred service
-    setStatus('success')
-    setTimeout(() => setStatus(null), 4000)
+    // TODO: connect to EmailJS / Formspree
+    setSent(true)
     setForm({ name: '', email: '', message: '' })
+    setTimeout(() => setSent(false), 4000)
   }
 
+  const inputCls = `w-full bg-secondary border border-border rounded-xl px-4 py-3 text-white text-sm
+                    placeholder:text-muted/40 focus:outline-none focus:border-accent/60
+                    focus:bg-card transition-all duration-200`
+
   return (
-    <section id="contact" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid opacity-50 pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+    <section id="contact" className="py-28 md:py-36 bg-secondary relative overflow-hidden">
+      <div className="absolute inset-0 bg-grid-black opacity-60 pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse, rgba(37,99,235,0.08) 0%, transparent 70%)' }} />
 
       <div ref={ref} className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
         >
-          <p className="text-accent font-mono text-sm text-center mb-2">// let&apos;s talk</p>
-          <h2 className="section-title">
-            Get In <span className="gradient-text">Touch</span>
+          <p className="section-label">contact</p>
+          <h2 className="section-title text-white">
+            Let&apos;s <span className="gradient-text">Work Together</span>
           </h2>
           <p className="section-subtitle">
-            Have a project in mind? I&apos;d love to hear about it. Let&apos;s build something great together.
+            Have a project in mind? I&apos;d love to hear about it — let&apos;s build something great.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-10">
-          {/* Contact Info */}
+          {/* Info */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="lg:col-span-2 space-y-4"
           >
-            <p className="text-muted leading-relaxed mb-6">
-              I&apos;m open to freelance projects, full-time opportunities, and interesting collaborations.
-              Feel free to reach out!
+            <p className="text-muted text-sm leading-relaxed mb-6">
+              I&apos;m available for freelance projects, full-time roles, and interesting collaborations.
+              Don&apos;t hesitate to reach out — I respond within 24 hours.
             </p>
-            {contactItems.map((item, i) => (
+
+            {info.map((item, i) => (
               <motion.div
                 key={item.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.3 + i * 0.1 }}
-                className="flex items-center gap-4 p-4 rounded-xl bg-surface border border-white/5 hover:border-accent/30 transition-all duration-200 group"
+                transition={{ delay: 0.3 + i * 0.09 }}
+                className="flex items-center gap-4 p-4 rounded-xl border border-border bg-card
+                           hover:border-accent/35 hover:bg-card-2 transition-all duration-200 group"
               >
-                <div className="w-10 h-10 rounded-xl bg-accent/15 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/25 transition-colors">
-                  <item.icon size={18} className="text-accent" />
+                <div className="w-9 h-9 rounded-lg bg-accent/15 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/25 transition-colors">
+                  <item.icon size={16} className="text-accent-light" />
                 </div>
-                <div>
+                <div className="min-w-0">
                   <p className="text-muted text-xs mb-0.5">{item.label}</p>
-                  {item.href ? (
-                    <a href={item.href} className="text-white text-sm font-medium hover:text-accent transition-colors">
-                      {item.value}
-                    </a>
-                  ) : (
-                    <span className="text-white text-sm font-medium">{item.value}</span>
-                  )}
+                  {item.href
+                    ? <a href={item.href} target={item.href.startsWith('http') ? '_blank' : undefined}
+                         rel="noopener noreferrer"
+                         className="text-white text-sm font-medium hover:text-accent-light transition-colors truncate block">
+                        {item.value}
+                      </a>
+                    : <span className="text-white text-sm font-medium">{item.value}</span>
+                  }
                 </div>
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Form */}
           <motion.form
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            onSubmit={handleSubmit}
-            className="lg:col-span-3 card space-y-5"
+            transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            onSubmit={onSubmit}
+            className="lg:col-span-3 bg-card border border-border rounded-2xl p-7 space-y-5"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label className="text-muted text-sm mb-1.5 block">Your Name</label>
-                <input
-                  type="text"
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  required
-                  placeholder="John Doe"
-                  className="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white text-sm
-                             placeholder:text-muted/50 focus:outline-none focus:border-accent/60
-                             transition-colors duration-200"
-                />
+                <label className="text-muted text-xs mb-1.5 block tracking-wide">Your Name</label>
+                <input type="text" name="name" value={form.name} onChange={onChange}
+                  required placeholder="John Doe" className={inputCls} />
               </div>
               <div>
-                <label className="text-muted text-sm mb-1.5 block">Email Address</label>
-                <input
-                  type="email"
-                  name="email"
-                  value={form.email}
-                  onChange={handleChange}
-                  required
-                  placeholder="john@example.com"
-                  className="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white text-sm
-                             placeholder:text-muted/50 focus:outline-none focus:border-accent/60
-                             transition-colors duration-200"
-                />
+                <label className="text-muted text-xs mb-1.5 block tracking-wide">Email</label>
+                <input type="email" name="email" value={form.email} onChange={onChange}
+                  required placeholder="john@example.com" className={inputCls} />
               </div>
             </div>
+
             <div>
-              <label className="text-muted text-sm mb-1.5 block">Message</label>
-              <textarea
-                name="message"
-                value={form.message}
-                onChange={handleChange}
-                required
-                rows={5}
-                placeholder="Tell me about your project..."
-                className="w-full bg-primary border border-white/10 rounded-xl px-4 py-3 text-white text-sm
-                           placeholder:text-muted/50 focus:outline-none focus:border-accent/60
-                           transition-colors duration-200 resize-none"
-              />
+              <label className="text-muted text-xs mb-1.5 block tracking-wide">Message</label>
+              <textarea name="message" value={form.message} onChange={onChange}
+                required rows={5} placeholder="Tell me about your project..."
+                className={`${inputCls} resize-none`} />
             </div>
 
-            {status === 'success' && (
+            <AnimatePresenceInline show={sent}>
               <motion.div
-                initial={{ opacity: 0, y: -10 }}
+                initial={{ opacity: 0, y: -8 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="px-4 py-3 rounded-xl bg-green-500/15 border border-green-500/25 text-green-400 text-sm"
+                exit={{ opacity: 0 }}
+                className="flex items-center gap-2 px-4 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-sm"
               >
-                Message sent! I&apos;ll get back to you shortly.
+                <FiCheck size={16} />
+                Message sent! I&apos;ll reply within 24 hours.
               </motion.div>
-            )}
+            </AnimatePresenceInline>
 
-            <button
+            <motion.button
               type="submit"
-              className="btn-primary w-full flex items-center justify-center gap-2"
+              whileHover={{ scale: 1.01 }}
+              whileTap={{ scale: 0.98 }}
+              className="btn-primary w-full text-sm py-3.5 justify-center"
             >
-              <FiSend size={16} />
+              <FiSend size={15} />
               Send Message
-            </button>
+            </motion.button>
           </motion.form>
         </div>
       </div>
     </section>
   )
+}
+
+function AnimatePresenceInline({ show, children }) {
+  return <AnimatePresence>{show && children}</AnimatePresence>
 }
