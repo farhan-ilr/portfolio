@@ -1,146 +1,109 @@
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
-import { FiGithub } from 'react-icons/fi'
+import { FiArrowRight } from 'react-icons/fi'
 import { SiAppstore, SiGoogleplay } from 'react-icons/si'
 import { PROJECTS } from '../utils/constants'
 
-function RoleCard({ role, delay, isInView }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
-      className="flex items-start gap-3 p-4 rounded-xl border border-border bg-black/40
-                 hover:border-accent/30 hover:bg-card transition-all duration-200 group"
-    >
-      <span className="text-xl flex-shrink-0 mt-0.5">{role.icon}</span>
-      <div>
-        <span className="text-white text-sm font-semibold block mb-1 group-hover:text-accent-light transition-colors">
-          {role.name}
-        </span>
-        <p className="text-muted text-xs leading-relaxed">{role.desc}</p>
-      </div>
-    </motion.div>
-  )
-}
+function ProjectCard({ project, index, isInView }) {
+  const navigate = useNavigate()
 
-function FeaturedProject({ project, isInView }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      className="rounded-2xl border border-border bg-card overflow-hidden"
+      transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
+      className="group rounded-2xl border border-border bg-card overflow-hidden
+                 hover:border-accent/30 transition-all duration-300 hover:shadow-glow-sm"
     >
-      {/* Header banner */}
-      <div className="relative h-36 bg-gradient-to-br from-blue-600/20 via-sky-500/10 to-transparent
-                      flex items-center px-8 gap-5 border-b border-border overflow-hidden">
+      {/* 16:9 Image / Placeholder */}
+      <div className="relative w-full aspect-video bg-gradient-to-br from-emerald-600/10 via-card to-card-2
+                      overflow-hidden">
         <div className="absolute inset-0 bg-grid-black opacity-40" />
-        <div className="absolute -right-10 -top-10 w-48 h-48 rounded-full bg-accent/10 blur-3xl" />
 
-        <span className="text-5xl relative z-10">{project.emoji}</span>
-        <div className="relative z-10">
-          <div className="flex items-center gap-2 mb-1">
-            <h3 className="text-white font-extrabold text-2xl">{project.title}</h3>
-            <span className="px-2 py-0.5 rounded-md bg-accent/20 text-accent-light text-xs font-mono border border-accent/20">
-              Featured
+        {project.image ? (
+          <img src={project.image} alt={project.title}
+            className="absolute inset-0 w-full h-full object-cover" />
+        ) : (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+            <motion.span
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: index * 0.4 }}
+              className="text-5xl drop-shadow-xl"
+            >
+              {project.emoji}
+            </motion.span>
+            <span className="text-muted text-xs font-mono tracking-widest opacity-50">
+              IMAGE COMING SOON
             </span>
           </div>
-          <p className="text-muted text-xs">{project.subtitle}</p>
-        </div>
+        )}
 
-        <div className="ml-auto relative z-10 flex gap-2">
-          {project.github && project.github !== '#' && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer"
-              className="w-8 h-8 rounded-lg border border-border bg-black/40 flex items-center justify-center
-                         text-muted hover:text-white hover:border-accent/40 transition-all">
-              <FiGithub size={14} />
-            </a>
-          )}
+        {/* Category badge */}
+        {project.category && (
+          <div className="absolute top-3 left-3">
+            <span className="px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-sm
+                             text-accent-light text-[10px] font-mono tracking-widest border border-accent/20">
+              {project.category}
+            </span>
+          </div>
+        )}
+
+        {/* Store icons overlay */}
+        <div className="absolute top-3 right-3 flex gap-1.5">
           {project.appStore && (
             <a href={project.appStore} target="_blank" rel="noopener noreferrer"
-              className="w-8 h-8 rounded-lg border border-border bg-black/40 flex items-center justify-center
-                         text-muted hover:text-white hover:border-white/30 transition-all"
-              title="App Store">
-              <SiAppstore size={14} />
+              onClick={e => e.stopPropagation()}
+              className="w-7 h-7 rounded-lg bg-black/70 backdrop-blur-sm border border-white/10
+                         flex items-center justify-center text-muted hover:text-white transition-colors">
+              <SiAppstore size={13} />
             </a>
           )}
           {project.playStore && (
             <a href={project.playStore} target="_blank" rel="noopener noreferrer"
-              className="w-8 h-8 rounded-lg border border-border bg-black/40 flex items-center justify-center
-                         text-muted hover:text-white hover:border-white/30 transition-all"
-              title="Google Play">
-              <SiGoogleplay size={14} />
+              onClick={e => e.stopPropagation()}
+              className="w-7 h-7 rounded-lg bg-black/70 backdrop-blur-sm border border-white/10
+                         flex items-center justify-center text-muted hover:text-white transition-colors">
+              <SiGoogleplay size={13} />
             </a>
           )}
         </div>
       </div>
 
-      {/* Body */}
-      <div className="p-6">
-        {/* Category */}
-        {project.category && (
-          <p className="text-xs font-mono text-accent-light tracking-widest uppercase mb-3">
-            {project.category}
-          </p>
-        )}
+      {/* Card body */}
+      <div className="p-5">
+        <h3 className="text-white font-bold text-lg mb-1.5 group-hover:text-accent-light transition-colors">
+          {project.title}
+        </h3>
+        <p className="text-muted text-sm leading-relaxed mb-4 line-clamp-2">
+          {project.description}
+        </p>
 
-        <p className="text-muted text-sm leading-relaxed mb-5">{project.description}</p>
-
-        {/* Store buttons */}
-        {(project.appStore || project.playStore) && (
-          <div className="flex flex-wrap gap-3 mb-6">
-            {project.appStore && (
-              <a href={project.appStore} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-black/50
-                           hover:border-white/25 hover:bg-white/5 transition-all duration-200 group">
-                <SiAppstore size={16} className="text-muted group-hover:text-white transition-colors" />
-                <div className="text-left">
-                  <p className="text-muted text-[10px] leading-none">Download on the</p>
-                  <p className="text-white text-xs font-semibold leading-tight">App Store</p>
-                </div>
-              </a>
-            )}
-            {project.playStore && (
-              <a href={project.playStore} target="_blank" rel="noopener noreferrer"
-                className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border bg-black/50
-                           hover:border-white/25 hover:bg-white/5 transition-all duration-200 group">
-                <SiGoogleplay size={16} className="text-muted group-hover:text-white transition-colors" />
-                <div className="text-left">
-                  <p className="text-muted text-[10px] leading-none">Get it on</p>
-                  <p className="text-white text-xs font-semibold leading-tight">Google Play</p>
-                </div>
-              </a>
-            )}
-          </div>
-        )}
-
-        {/* Tech tags */}
-        <div className="flex flex-wrap gap-1.5 mb-7">
-          {project.tags.map((tag) => (
+        {/* Tags — show first 4 */}
+        <div className="flex flex-wrap gap-1.5 mb-5">
+          {project.tags.slice(0, 4).map((tag) => (
             <span key={tag}
-              className="px-2.5 py-1 rounded-lg bg-accent/10 text-accent-light text-xs
-                         font-mono border border-accent/15">
+              className="px-2 py-0.5 rounded-md bg-accent/10 text-accent-light
+                         text-[11px] font-mono border border-accent/15">
               {tag}
             </span>
           ))}
+          {project.tags.length > 4 && (
+            <span className="px-2 py-0.5 rounded-md bg-card-2 text-muted text-[11px] border border-border">
+              +{project.tags.length - 4}
+            </span>
+          )}
         </div>
 
-        {/* Roles */}
-        {project.roles && (
-          <>
-            <div className="flex items-center gap-2 text-xs font-mono text-accent-light
-                            tracking-widest uppercase mb-4">
-              <span className="w-4 h-px bg-accent" />
-              User Roles
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {project.roles.map((role, i) => (
-                <RoleCard key={role.name} role={role} delay={0.3 + i * 0.07} isInView={isInView} />
-              ))}
-            </div>
-          </>
-        )}
+        {/* View button */}
+        <button
+          onClick={() => navigate(`/projects/${project.slug}`)}
+          className="flex items-center gap-2 text-sm font-medium text-accent-light
+                     hover:text-white transition-colors group/btn"
+        >
+          View Project
+          <FiArrowRight size={15} className="group-hover/btn:translate-x-1 transition-transform" />
+        </button>
       </div>
     </motion.div>
   )
@@ -153,7 +116,7 @@ export default function Projects() {
     <section id="projects" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
       <div className="absolute inset-0 bg-grid-black opacity-60 pointer-events-none" />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-64 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(37,99,235,0.07) 0%, transparent 70%)' }} />
+        style={{ background: 'radial-gradient(ellipse, rgba(16,185,129,0.06) 0%, transparent 70%)' }} />
 
       <div ref={ref} className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -173,7 +136,6 @@ export default function Projects() {
               My Projects
             </h2>
           </motion.div>
-
           <motion.p
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -192,24 +154,13 @@ export default function Projects() {
           className="h-px bg-gradient-to-r from-accent/60 via-accent-2/30 to-transparent mb-14"
         />
 
-        {/* Projects */}
-        <div className="space-y-8">
-          {PROJECTS.map((project) =>
-            project.roles ? (
-              <FeaturedProject key={project.id} project={project} isInView={isInView} />
-            ) : (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6 }}
-                className="card-hover text-center py-16 text-muted text-sm"
-              >
-                More projects coming soon...
-              </motion.div>
-            )
-          )}
+        {/* Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {PROJECTS.map((project, i) => (
+            <ProjectCard key={project.id} project={project} index={i} isInView={isInView} />
+          ))}
         </div>
+
       </div>
     </section>
   )

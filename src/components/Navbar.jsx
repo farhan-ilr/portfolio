@@ -77,7 +77,7 @@ export default function Navbar() {
               {/* Spinning gradient border */}
               <span className="absolute inset-0 rounded-xl overflow-hidden">
                 <span className="absolute inset-[-50%] animate-spin-slow
-                                 bg-[conic-gradient(from_0deg,#2563eb,#0ea5e9,#60a5fa,#2563eb)]
+                                 bg-[conic-gradient(from_0deg,#10b981,#0ea5e9,#34d399,#10b981)]
                                  opacity-80" />
               </span>
               {/* Dark fill inset */}

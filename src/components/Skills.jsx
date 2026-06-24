@@ -53,7 +53,7 @@ export default function Skills() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-muted text-sm max-w-xs text-left sm:text-right leading-relaxed"
           >
-            Tools and technologies I work with every day.
+            Tools and technologies I work with.
           </motion.p>
         </div>
 

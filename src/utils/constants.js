@@ -26,6 +26,7 @@ export const SKILLS = [
 export const PROJECTS = [
   {
     id: 1,
+    slug: 'mandara',
     title: 'Mandara',
     subtitle: 'Multi-Role Wellness & Hospital Management App',
     description: 'A large-scale Flutter application serving a luxury wellness resort — built with 6 distinct login roles, each with a dedicated feature set covering women\'s wellness, smart room controls, clinical management, and kitchen operations.',
@@ -79,7 +80,7 @@ export const EXPERIENCE = [
     period: '2021 – Present',
     tags: ['Flutter', 'Dart', 'Firebase', 'GetX', 'Riverpod'],
     description: [
-      'Developed and maintained 70+ Flutter applications across e-commerce, healthcare, fintech, and social platforms.',
+      'Developed and maintained 70+ Flutter applications across custom LMS, CRM & ERP, e-commerce, and healthcare platforms.',
       'Led mobile architecture decisions using GetX and Riverpod state management patterns.',
       'Integrated Firebase services, REST APIs, and third-party SDKs across projects.',
       'Built custom UI components and smooth animations to deliver pixel-perfect experiences.',
@@ -123,6 +124,6 @@ export const CONTACT_INFO = {
   email: 'farhanilr4@gmail.com',
   github: 'https://github.com/farhan-ilr',
   linkedin: 'https://www.linkedin.com/in/farhan-nazar/',
-  instagram: 'https://instagram.com/_f_arhan_',
+  instagram: 'https://instagram.com/__f_arhan',
   location: 'Kottakkal, Malappuram, Kerala, India',
 }
