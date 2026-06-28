@@ -25,8 +25,8 @@ export const SKILLS = [
 
 export const PROJECTS = [
   {
-    id: 2,
-    slug: 'skill-plus',
+    id: 1,
+    slug: 'mandara',
     title: 'Skill Plus',
     subtitle: 'E-Learning & LMS Platform',
     description: 'A full-featured Learning Management System built with Flutter for students — covering course discovery, Razorpay payments with custom EMI, live Zoom classes, study materials, job search, and detailed progress tracking with course certificates.',
@@ -73,9 +73,9 @@ export const PROJECTS = [
     ],
   },
   {
-    id: 1,
-    slug: 'mandara',
-    title: 'Mandara',
+    id: 2,
+    slug: 'skill-plus',
+    title: 'Skill Plus',
     subtitle: 'Multi-Role Wellness & Hospital Management App',
     description: 'A large-scale Flutter application serving a luxury wellness resort — built with 6 distinct login roles, each with a dedicated feature set covering women\'s wellness, smart room controls, clinical management, and kitchen operations.',
     tags: ['Flutter', 'GetX', 'Firebase', 'Tuya SDK', 'H Band SDK', 'Thermal Printer'],
