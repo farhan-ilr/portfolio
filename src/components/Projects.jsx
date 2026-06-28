@@ -25,6 +25,15 @@ function ProjectCard({ project, index, isInView }) {
         {project.image ? (
           <img src={project.image} alt={project.title}
             className="absolute inset-0 w-full h-full object-cover" />
+        ) : project.icon ? (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <motion.img
+              src={project.icon} alt={project.title}
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: index * 0.4 }}
+              className="w-24 h-24 rounded-2xl shadow-glow-sm object-cover"
+            />
+          </div>
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
             <motion.span
