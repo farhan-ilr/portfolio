@@ -76,7 +76,7 @@ function ProjectCard({ project, index, isInView }) {
         <h3 className="text-white font-bold text-lg mb-1.5 group-hover:text-accent-light transition-colors">
           {project.title}
         </h3>
-        <p className="text-muted text-sm leading-relaxed mb-4 line-clamp-2">
+        <p className="text-muted text-sm leading-relaxed mb-4 line-clamp-3">
           {project.description}
         </p>
 
