@@ -59,15 +59,6 @@ export default function ProjectDetail() {
           {project.image ? (
             <img src={project.image} alt={project.title}
               className="absolute inset-0 w-full h-full object-cover" />
-          ) : project.icon ? (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.img
-                src={project.icon} alt={project.title}
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                className="w-36 h-36 rounded-3xl shadow-glow object-cover"
-              />
-            </div>
           ) : (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
               <motion.span
@@ -91,13 +82,19 @@ export default function ProjectDetail() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-6"
         >
-          <div>
-            {project.category && (
-              <span className="text-xs font-mono text-accent-light tracking-widest uppercase block mb-2">
-                {project.category}
-              </span>
+          <div className="flex items-center gap-4">
+            {project.icon && (
+              <img src={project.icon} alt={project.title}
+                className="w-14 h-14 rounded-2xl object-cover flex-shrink-0 border border-border" />
             )}
-            <h1 className="text-3xl md:text-4xl font-extrabold text-white">{project.title}</h1>
+            <div>
+              {project.category && (
+                <span className="text-xs font-mono text-accent-light tracking-widest uppercase block mb-2">
+                  {project.category}
+                </span>
+              )}
+              <h1 className="text-3xl md:text-4xl font-extrabold text-white">{project.title}</h1>
+            </div>
           </div>
 
           {/* Store buttons */}
