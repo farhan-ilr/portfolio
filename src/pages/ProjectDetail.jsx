@@ -147,8 +147,8 @@ export default function ProjectDetail() {
         {/* Divider */}
         <div className="h-px bg-gradient-to-r from-accent/50 via-accent-2/20 to-transparent mb-12" />
 
-        {/* Roles */}
-        {project.roles && (
+        {/* Roles / Integrations */}
+        {project.roles && project.roles.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -157,7 +157,7 @@ export default function ProjectDetail() {
             <div className="flex items-center gap-2 text-xs font-mono text-accent-light
                             tracking-widest uppercase mb-6">
               <span className="w-4 h-px bg-accent" />
-              User Roles
+              {project.rolesLabel ?? 'User Roles'}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {project.roles.map((role, i) => (

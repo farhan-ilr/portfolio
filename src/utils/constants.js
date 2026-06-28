@@ -30,14 +30,31 @@ export const PROJECTS = [
     title: 'Skill Plus',
     subtitle: 'E-Learning & LMS Platform',
     description: 'A full-featured Learning Management System built with Flutter — enabling students to enrol in courses, track progress, attend live classes, and access study materials across iOS and Android.',
-    tags: ['Flutter', 'GetX', 'Firebase', 'REST APIs'],
+    tags: ['Flutter', 'GetX', 'Firebase', 'REST APIs', 'Zoom SDK', 'Razorpay', 'Airbridge'],
     emoji: '🎓',
     category: 'E-Learning / LMS',
     github: '#',
     appStore: 'https://apps.apple.com/in/app/skill-plus/id6742049678',
     playStore: 'https://play.google.com/store/apps/details?id=com.app.globaleducationcampus&hl=en_IN',
     featured: true,
-    roles: [],
+    rolesLabel: 'Key Integrations',
+    roles: [
+      {
+        name: 'Zoom SDK',
+        icon: '🎥',
+        desc: 'Integrated Zoom Meeting SDK for in-app live classes and virtual sessions directly within the learning platform.',
+      },
+      {
+        name: 'Razorpay',
+        icon: '💳',
+        desc: 'Payment gateway integration supporting UPI, cards, and wallets for course enrolments and subscription purchases.',
+      },
+      {
+        name: 'Airbridge',
+        icon: '🔗',
+        desc: 'Deep linking and deferred linking via Airbridge for seamless user attribution and onboarding flows.',
+      },
+    ],
   },
   {
     id: 1,
