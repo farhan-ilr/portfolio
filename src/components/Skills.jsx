@@ -12,7 +12,7 @@ import { FiCamera, FiWatch, FiPrinter, FiLink } from 'react-icons/fi'
 const iconMap = {
   SiFlutter: SiFlutter, SiDart: SiDart, SiKotlin: SiKotlin,
   FaJava: FaJava, SiFirebase: SiFirebase, SiSqlite: SiSqlite,
-  SiGetx: SiGetx, SiGit: SiGit, SiGithub: SiGithub,
+  SiGit: SiGit, SiGithub: SiGithub,
   SiAndroidstudio: SiAndroidstudio, SiXcode: SiXcode, SiFigma: SiFigma,
   SiGoogleplay: SiGoogleplay, SiAppstore: SiAppstore,
   SiZoom: SiZoom, SiRazorpay: SiRazorpay,
