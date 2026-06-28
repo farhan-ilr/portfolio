@@ -84,7 +84,7 @@ export default function ProjectDetail() {
         >
           <div className="flex items-center gap-4">
             {project.icon && (
-              <img src={project.icon} alt={project.title}
+              <img src={project.icon} alt={project.title} loading="lazy"
                 className="w-14 h-14 rounded-2xl object-cover flex-shrink-0 border border-border" />
             )}
             <div>
