@@ -7,7 +7,7 @@ import {
   SiGooglemaps, SiXcode,
 } from 'react-icons/si'
 import { FaJava } from 'react-icons/fa'
-import { FiCamera, FiWatch, FiPrinter, FiLink } from 'react-icons/fi'
+import { FiCamera, FiWatch, FiPrinter, FiLink, FiServer } from 'react-icons/fi'
 
 const iconMap = {
   SiFlutter: SiFlutter, SiDart: SiDart, SiKotlin: SiKotlin,
@@ -17,7 +17,7 @@ const iconMap = {
   SiGoogleplay: SiGoogleplay, SiAppstore: SiAppstore,
   SiZoom: SiZoom, SiRazorpay: SiRazorpay,
   SiGooglemaps: SiGooglemaps, FiCamera: FiCamera,
-  FiWatch: FiWatch, FiPrinter: FiPrinter, FiLink: FiLink,
+  FiWatch: FiWatch, FiPrinter: FiPrinter, FiLink: FiLink, FiServer: FiServer,
 }
 
 const CATEGORIES = [
@@ -34,6 +34,7 @@ const CATEGORIES = [
     label: 'SDKs & Integrations',
     skills: [
       { name: 'Firebase',        icon: 'SiFirebase',   color: '#FFCA28' },
+      { name: 'REST APIs',       icon: 'FiServer',     color: '#71717a' },
       { name: 'SQLite',          icon: 'SiSqlite',     color: '#6db4cf' },
       { name: 'Zoom SDK',        icon: 'SiZoom',       color: '#2D8CFF' },
       { name: 'Razorpay',        icon: 'SiRazorpay',   color: '#3395FF' },

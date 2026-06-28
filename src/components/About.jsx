@@ -8,8 +8,6 @@ const stats = [
   { value: '50K+', label: 'App Downloads' },
 ]
 
-const tags    = ['Flutter', 'Dart', 'Android (Kotlin)', 'Firebase', 'REST APIs', 'GetX', 'Riverpod']
-
 export default function About() {
   const { ref, isInView } = useScrollAnimation()
 
@@ -72,21 +70,6 @@ export default function About() {
               architecture, smooth performance, and pixel-perfect UI.
             </p>
 
-            {/* Tech tags */}
-            <div className="flex flex-wrap gap-2 pt-2">
-              {tags.map((tag, i) => (
-                <motion.span
-                  key={tag}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.3, delay: 0.5 + i * 0.05 }}
-                  className="px-3 py-1.5 text-xs rounded-lg border border-border bg-card
-                             text-muted hover:text-white hover:border-accent/40 transition-all duration-200"
-                >
-                  {tag}
-                </motion.span>
-              ))}
-            </div>
           </motion.div>
 
           {/* Stats */}
