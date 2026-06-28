@@ -25,6 +25,21 @@ export const SKILLS = [
 
 export const PROJECTS = [
   {
+    id: 2,
+    slug: 'skill-plus',
+    title: 'Skill Plus',
+    subtitle: 'E-Learning & LMS Platform',
+    description: 'A full-featured Learning Management System built with Flutter — enabling students to enrol in courses, track progress, attend live classes, and access study materials across iOS and Android.',
+    tags: ['Flutter', 'GetX', 'Firebase', 'REST APIs'],
+    emoji: '🎓',
+    category: 'E-Learning / LMS',
+    github: '#',
+    appStore: 'https://apps.apple.com/in/app/skill-plus/id6742049678',
+    playStore: 'https://play.google.com/store/apps/details?id=com.app.globaleducationcampus&hl=en_IN',
+    featured: true,
+    roles: [],
+  },
+  {
     id: 1,
     slug: 'mandara',
     title: 'Mandara',
