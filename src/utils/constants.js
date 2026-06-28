@@ -3,7 +3,7 @@ export const NAV_LINKS = [
   { label: 'About', to: 'about' },
   { label: 'Skills', to: 'skills' },
   { label: 'Projects', to: 'projects' },
-  { label: 'Experience', to: 'experience' },
+  { label: 'Resume', to: 'experience' },
   { label: 'Contact', to: 'contact' },
 ]
 
@@ -80,11 +80,10 @@ export const EXPERIENCE = [
     period: '2021 – Present',
     tags: ['Flutter', 'Dart', 'Firebase', 'GetX', 'Riverpod'],
     description: [
-      'Developed and maintained 70+ Flutter applications across custom LMS, CRM & ERP, e-commerce, and healthcare platforms.',
+      'Developed and maintained 50+ Flutter applications across custom LMS, CRM & ERP, e-commerce, and healthcare platforms.',
       'Led mobile architecture decisions using GetX and Riverpod state management patterns.',
       'Integrated Firebase services, REST APIs, and third-party SDKs across projects.',
       'Built custom UI components and smooth animations to deliver pixel-perfect experiences.',
-      'Implemented CI/CD pipelines and published apps to both Google Play and App Store.',
     ],
     integrations: [
       { label: 'Zoom Meeting SDK',   desc: 'In-app video calls & meeting management' },
@@ -105,9 +104,8 @@ export const EXPERIENCE = [
     tags: ['Android', 'Kotlin', 'Java', 'MVVM'],
     description: [
       'Built 10+ native Android applications in Java and Kotlin with MVVM and Clean Architecture.',
-      'Worked with core Android components — ViewModel, LiveData, Room, and Navigation.',
+      'Worked with core Android components — ViewModel, LiveData, and Navigation.',
       'Integrated Google Maps, push notifications, and hardware APIs (camera, GPS, Bluetooth).',
-      'Optimised app performance, memory usage, and battery consumption for low-end devices.',
       'Collaborated closely with Flutter team to share business logic via platform channels.',
     ],
     integrations: [
@@ -117,6 +115,17 @@ export const EXPERIENCE = [
       { label: 'Watch SDK',       desc: 'Wearable health & fitness data integration' },
     ],
     current: true,
+  },
+]
+
+export const EDUCATION = [
+  {
+    id: 1,
+    degree: 'Diploma in Computer Engineering',
+    institution: 'AKNM Government Polytechnic College',
+    location: 'Thirurangadi, Kerala',
+    period: '2020 – 2023',
+    description: 'Gained solid technical foundations in computer engineering — covering programming, electronics, networking, and software development principles that shaped my path into mobile development.',
   },
 ]
 

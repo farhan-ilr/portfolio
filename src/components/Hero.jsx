@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { FiGithub, FiLinkedin, FiArrowRight } from 'react-icons/fi'
-import { HiDownload } from 'react-icons/hi'
 import Typewriter from './Typewriter'
 import { CONTACT_INFO } from '../utils/constants'
 
@@ -129,56 +128,43 @@ export default function Hero() {
         {/* ── CTA buttons ── */}
         <motion.div
           variants={fadeUp}
-          className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-14"
+          className="flex items-center justify-center gap-3 mb-14"
         >
-
-          {/* View My Work — circle-reveal */}
+          {/* Explore My Work */}
           <Link to="projects" smooth duration={600} offset={-80}>
-            <MagneticBtn>
-              <motion.button
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className="relative group overflow-hidden font-bold text-white px-14 py-5 rounded-2xl"
-              >
-                {/* Spinning conic gradient border */}
-                <span className="absolute inset-0 rounded-2xl overflow-hidden">
-                  <span className="absolute inset-[-50%] animate-spin-slow
-                                   bg-[conic-gradient(from_0deg,#e11d48,#fb7185,#f43f5e,#e11d48)]
-                                   opacity-90" />
-                </span>
-                {/* Dark inner fill */}
-                <span className="absolute inset-[1.5px] rounded-[14px] bg-black" />
-                {/* Content */}
-                <span className="relative z-10 flex items-center gap-3 text-xl font-black">
-                  Explore My Work
-                  <FiArrowRight size={22} className="group-hover:translate-x-1 transition-transform duration-300" />
-                </span>
-              </motion.button>
-            </MagneticBtn>
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="relative group overflow-hidden flex items-center gap-2 px-5 py-2.5 rounded-xl cursor-pointer"
+            >
+              <span className="absolute inset-0 rounded-xl overflow-hidden">
+                <span className="absolute inset-[-50%] animate-spin-slow bg-[conic-gradient(from_0deg,#e11d48,#fb7185,#f43f5e,#e11d48)]" />
+              </span>
+              <span className="absolute inset-[1.5px] rounded-[10px] bg-black" />
+              <span className="relative z-10 flex items-center gap-2 text-sm font-semibold text-white">
+                <FiArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform duration-200" />
+                Explore My Work
+              </span>
+            </motion.div>
           </Link>
 
-          {/* Download CV — sliding underline text */}
-          <a href="/resume.pdf" download>
-            <MagneticBtn>
-              <motion.button
-                whileTap={{ scale: 0.97 }}
-                className="group relative flex items-center gap-2.5 px-2 py-1 text-base font-semibold text-muted hover:text-white transition-colors duration-300"
-              >
-                <HiDownload
-                  size={18}
-                  className="group-hover:-translate-y-0.5 transition-transform duration-300"
-                />
-                <span className="relative">
-                  Download CV
-                  {/* Animated underline */}
-                  <span
-                    className="absolute -bottom-0.5 left-0 h-px w-0 bg-accent
-                               group-hover:w-full transition-all duration-400 ease-out"
-                  />
-                </span>
-              </motion.button>
-            </MagneticBtn>
-          </a>
+          {/* Resume */}
+          <Link to="experience" smooth duration={600} offset={-80}>
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="relative group overflow-hidden flex items-center gap-2 px-5 py-2.5 rounded-xl cursor-pointer"
+            >
+              <span className="absolute inset-0 rounded-xl overflow-hidden">
+                <span className="absolute inset-[-50%] animate-spin-slow bg-[conic-gradient(from_0deg,#e11d48,#fb7185,#f43f5e,#e11d48)]" />
+              </span>
+              <span className="absolute inset-[1.5px] rounded-[10px] bg-black" />
+              <span className="relative z-10 text-sm font-semibold text-white">
+                Resume
+              </span>
+            </motion.div>
+          </Link>
+
         </motion.div>
 
         {/* Socials */}
