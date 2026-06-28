@@ -38,10 +38,9 @@ export default function ProjectDetail() {
             <FiArrowLeft size={16} className="group-hover:-translate-x-0.5 transition-transform" />
             Back to Projects
           </button>
-          <span className="font-mono font-bold text-sm">
-            <span className="text-accent">&lt;</span>
-            <span className="text-white">Farhan</span>
-            <span className="text-accent"> /&gt;</span>
+          <span className="font-mono font-bold text-lg tracking-tight">
+            <span className="text-white">farhan</span>
+            <span className="text-accent">.</span>
           </span>
         </div>
       </div>

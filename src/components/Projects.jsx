@@ -13,7 +13,8 @@ function ProjectCard({ project, index, isInView }) {
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-      className="group rounded-2xl border border-border bg-card overflow-hidden
+      onClick={() => navigate(`/projects/${project.slug}`)}
+      className="group rounded-2xl border border-border bg-card overflow-hidden cursor-pointer
                  hover:border-accent/30 transition-all duration-300 hover:shadow-glow-sm"
     >
       {/* 16:9 Image / Placeholder */}
@@ -79,31 +80,12 @@ function ProjectCard({ project, index, isInView }) {
           {project.description}
         </p>
 
-        {/* Tags — show first 4 */}
-        <div className="flex flex-wrap gap-1.5 mb-5">
-          {project.tags.slice(0, 4).map((tag) => (
-            <span key={tag}
-              className="px-2 py-0.5 rounded-md bg-accent/10 text-accent-light
-                         text-[11px] font-mono border border-accent/15">
-              {tag}
-            </span>
-          ))}
-          {project.tags.length > 4 && (
-            <span className="px-2 py-0.5 rounded-md bg-card-2 text-muted text-[11px] border border-border">
-              +{project.tags.length - 4}
-            </span>
-          )}
-        </div>
-
-        {/* View button */}
-        <button
-          onClick={() => navigate(`/projects/${project.slug}`)}
-          className="flex items-center gap-2 text-sm font-medium text-accent-light
-                     hover:text-white transition-colors group/btn"
-        >
+        {/* View link */}
+        <div className="flex items-center gap-2 text-sm font-medium text-accent-light
+                        group-hover:text-white transition-colors">
           View Project
-          <FiArrowRight size={15} className="group-hover/btn:translate-x-1 transition-transform" />
-        </button>
+          <FiArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+        </div>
       </div>
     </motion.div>
   )
