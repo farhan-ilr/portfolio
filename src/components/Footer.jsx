@@ -26,7 +26,7 @@ export default function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="text-xs font-mono tracking-[0.25em] uppercase text-muted mb-3"
+              className="text-xs font-mono tracking-[0.25em] uppercase text-muted-fg mb-3"
             >
               Flutter &amp; Android Developer
             </motion.p>
@@ -45,7 +45,7 @@ export default function Footer() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="text-muted text-xs mt-3 max-w-xs leading-relaxed"
+              className="text-muted-fg text-xs mt-3 max-w-xs leading-relaxed"
             >
               Building cross-platform mobile experiences with Flutter &amp; Native Android.
               Available for freelance &amp; full-time opportunities.
@@ -63,7 +63,7 @@ export default function Footer() {
                     smooth
                     duration={600}
                     offset={-80}
-                    className="text-muted hover:text-white text-xs font-mono tracking-wide
+                    className="text-muted-fg hover:text-white text-xs font-mono tracking-wide
                                transition-colors duration-200 cursor-pointer hover:text-accent-light"
                   >
                     {link.label}
@@ -84,7 +84,7 @@ export default function Footer() {
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                   className="w-9 h-9 rounded-xl border border-border bg-card
-                             flex items-center justify-center text-muted
+                             flex items-center justify-center text-muted-fg
                              hover:text-white hover:border-accent/40
                              hover:bg-accent/10 transition-all duration-200"
                 >
@@ -97,10 +97,10 @@ export default function Footer() {
 
         {/* ── Bottom bar ── */}
         <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-muted text-[11px] font-mono">
+          <p className="text-muted-fg text-[11px] font-mono">
             © {new Date().getFullYear()} Farhan. All rights reserved.
           </p>
-          <p className="text-muted/50 text-[11px] font-mono">
+          <p className="text-muted-fg text-[11px] font-mono">
             Kottakkal, Malappuram, Kerala, India
           </p>
         </div>

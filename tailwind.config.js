@@ -16,6 +16,7 @@ export default {
         'accent-light': '#fb7185',
         'accent-2':     '#f43f5e',
         muted:          '#71717a',
+        'muted-fg':     '#a1a1aa',
         text:           '#fafafa',
       },
       fontFamily: {
