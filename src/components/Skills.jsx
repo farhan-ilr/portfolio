@@ -48,9 +48,9 @@ const CATEGORIES = [
   {
     label: 'Tools',
     skills: [
-      { name: 'Git',            icon: 'SiGit',           color: '#F05032' },
-      { name: 'GitHub',         icon: 'SiGithub',        color: '#ffffff' },
       { name: 'Android Studio', icon: 'SiAndroidstudio', color: '#3DDC84' },
+      { name: 'Git',            icon: 'SiGit',           color: '#050404' },
+      { name: 'GitHub',         icon: 'SiGithub',        color: '#ffffff' },
       { name: 'Xcode',          icon: 'SiXcode',         color: '#147EFB' },
       { name: 'Figma',          icon: 'SiFigma',         color: '#F24E1E' },
     ],

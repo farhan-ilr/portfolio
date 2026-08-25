@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { FiArrowLeft, FiZap } from 'react-icons/fi'
 import { SiAppstore, SiGoogleplay } from 'react-icons/si'
 import { PROJECTS } from '../utils/constants'
@@ -9,6 +9,7 @@ export default function ProjectDetail() {
   const { slug } = useParams()
   const navigate = useNavigate()
   const project = PROJECTS.find(p => p.slug === slug)
+  const [loaded, setLoaded] = useState(false)
 
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
@@ -57,8 +58,34 @@ export default function ProjectDetail() {
         >
           <div className="absolute inset-0 bg-grid-black opacity-40" />
           {project.image ? (
-            <img src={project.image} alt={project.title}
-              className="absolute inset-0 w-full h-full object-cover" />
+            <>
+              <AnimatePresence>
+                {!loaded && (
+                  <motion.div
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-card via-card-2/60 to-card
+                                    bg-[length:200%_100%] animate-shimmer" />
+                    <motion.span
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 0.9, repeat: Infinity, ease: 'linear' }}
+                      className="relative w-10 h-10 rounded-full border-2 border-accent/25 border-t-accent-light"
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              <motion.img
+                src={project.image}
+                alt={project.title}
+                onLoad={() => setLoaded(true)}
+                initial={{ opacity: 0, scale: 1.04 }}
+                animate={loaded ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </>
           ) : (
             <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
               <motion.span
@@ -68,9 +95,6 @@ export default function ProjectDetail() {
               >
                 {project.emoji}
               </motion.span>
-              <span className="text-muted text-xs font-mono tracking-widest opacity-40">
-                IMAGE COMING SOON
-              </span>
             </div>
           )}
         </motion.div>

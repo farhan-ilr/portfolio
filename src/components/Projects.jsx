@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
 import { FiArrowRight } from 'react-icons/fi'
@@ -7,6 +8,7 @@ import { PROJECTS } from '../utils/constants'
 
 function ProjectCard({ project, index, isInView }) {
   const navigate = useNavigate()
+  const [loaded, setLoaded] = useState(false)
 
   return (
     <motion.div
@@ -23,8 +25,34 @@ function ProjectCard({ project, index, isInView }) {
         <div className="absolute inset-0 bg-grid-black opacity-40" />
 
         {project.image ? (
-          <img src={project.image} alt={project.title}
-            className="absolute inset-0 w-full h-full object-cover" />
+          <>
+            <AnimatePresence>
+              {!loaded && (
+                <motion.div
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="absolute inset-0 flex items-center justify-center"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-card via-card-2/60 to-card
+                                  bg-[length:200%_100%] animate-shimmer" />
+                  <motion.span
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 0.9, repeat: Infinity, ease: 'linear' }}
+                    className="relative w-8 h-8 rounded-full border-2 border-accent/25 border-t-accent-light"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <motion.img
+              src={project.image}
+              alt={project.title}
+              onLoad={() => setLoaded(true)}
+              initial={{ opacity: 0, scale: 1.04 }}
+              animate={loaded ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </>
         ) : (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
             <motion.span
@@ -34,45 +62,42 @@ function ProjectCard({ project, index, isInView }) {
             >
               {project.emoji}
             </motion.span>
-            <span className="text-muted text-xs font-mono tracking-widest opacity-50">
-              IMAGE COMING SOON
-            </span>
           </div>
         )}
 
-        {/* Category badge */}
-        {project.category && (
-          <div className="absolute top-3 left-3">
-            <span className="px-2.5 py-1 rounded-lg bg-black/70 backdrop-blur-sm
-                             text-accent-light text-[10px] font-mono tracking-widest border border-accent/20">
-              {project.category}
-            </span>
-          </div>
-        )}
-
-        {/* Store icons overlay */}
-        <div className="absolute top-3 right-3 flex gap-1.5">
-          {project.appStore && (
-            <a href={project.appStore} target="_blank" rel="noopener noreferrer"
-              onClick={e => e.stopPropagation()}
-              className="w-7 h-7 rounded-lg bg-black/70 backdrop-blur-sm border border-white/10
-                         flex items-center justify-center text-muted hover:text-white transition-colors">
-              <SiAppstore size={13} />
-            </a>
-          )}
-          {project.playStore && (
-            <a href={project.playStore} target="_blank" rel="noopener noreferrer"
-              onClick={e => e.stopPropagation()}
-              className="w-7 h-7 rounded-lg bg-black/70 backdrop-blur-sm border border-white/10
-                         flex items-center justify-center text-muted hover:text-white transition-colors">
-              <SiGoogleplay size={13} />
-            </a>
-          )}
-        </div>
       </div>
 
       {/* Card body */}
       <div className="p-5">
+        {/* Category + store icons row */}
+        <div className="flex items-center justify-between gap-3 mb-3">
+          {project.category ? (
+            <span className="px-2.5 py-1 rounded-lg bg-accent/10 border border-accent/20
+                             text-accent-light text-[10px] font-mono tracking-widest uppercase">
+              {project.category}
+            </span>
+          ) : <span />}
+
+          {(project.appStore || project.playStore) && (
+            <div className="flex items-center gap-2 flex-shrink-0">
+              {project.appStore && (
+                <a href={project.appStore} target="_blank" rel="noopener noreferrer"
+                  onClick={e => e.stopPropagation()}
+                  className="text-muted hover:text-white transition-colors">
+                  <SiAppstore size={15} />
+                </a>
+              )}
+              {project.playStore && (
+                <a href={project.playStore} target="_blank" rel="noopener noreferrer"
+                  onClick={e => e.stopPropagation()}
+                  className="text-muted hover:text-white transition-colors">
+                  <SiGoogleplay size={15} />
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+
         <h3 className="text-white font-bold text-lg mb-1.5 group-hover:text-accent-light transition-colors">
           {project.title}
         </h3>

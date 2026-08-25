@@ -1,3 +1,7 @@
+import mandaraImg from '../assets/projects/mandara.png'
+import skillplusImg from '../assets/projects/skillplus.png'
+import vocabspediaImg from '../assets/projects/vocabspedia.png'
+
 export const NAV_LINKS = [
   { label: 'Home', to: 'hero' },
   { label: 'About', to: 'about' },
@@ -8,6 +12,7 @@ export const NAV_LINKS = [
 ]
 
 export const SKILLS = [
+  { name: 'Android Studio', icon: 'SiAndroidstudio', color: '#3DDC84' },
   { name: 'Flutter',      icon: 'SiFlutter',    color: '#54C5F8' },
   { name: 'Dart',         icon: 'SiDart',        color: '#0175C2' },
   { name: 'Android',      icon: 'SiAndroid',     color: '#3DDC84' },
@@ -18,7 +23,6 @@ export const SKILLS = [
   { name: 'Figma',        icon: 'SiFigma',       color: '#F24E1E' },
   { name: 'SQLite',       icon: 'SiSqlite',      color: '#003B57' },
   { name: 'Postman',      icon: 'SiPostman',     color: '#FF6C37' },
-  { name: 'Android Studio', icon: 'SiAndroidstudio', color: '#3DDC84' },
   { name: 'Google Play',  icon: 'SiGoogleplay',  color: '#414141' },
   { name: 'App Store',    icon: 'SiAppstore',    color: '#0D96F6' },
 ]
@@ -29,6 +33,7 @@ export const PROJECTS = [
     slug: 'mandara',
     title: 'Skill Plus',
     subtitle: 'E-Learning & LMS Platform',
+    image: skillplusImg,
     description: 'A full-featured Learning Management System built with Flutter for students — covering course discovery, Razorpay payments with custom EMI, live Zoom classes, study materials, job search, and detailed progress tracking with course certificates.',
     tags: ['Flutter', 'GetX', 'Firebase', 'REST APIs', 'Zoom SDK', 'Razorpay', 'Airbridge'],
     emoji: '🎓',
@@ -75,8 +80,9 @@ export const PROJECTS = [
   {
     id: 2,
     slug: 'skill-plus',
-    title: 'Skill Plus',
+    title: 'Mandara',
     subtitle: 'Multi-Role Wellness & Hospital Management App',
+    image: mandaraImg,
     description: 'A large-scale Flutter application serving a luxury wellness resort — built with 6 distinct login roles, each with a dedicated feature set covering women\'s wellness, smart room controls, clinical management, and kitchen operations.',
     tags: ['Flutter', 'GetX', 'Firebase', 'Tuya SDK', 'H Band SDK', 'Thermal Printer'],
     emoji: '🏥',
@@ -116,6 +122,44 @@ export const PROJECTS = [
         name: 'Kitchen Staff',
         icon: '🍽️',
         desc: 'Restaurant management — live guest order feed with real-time updates, KOT creation and management, and thermal printer integration for KOT & bill printing.',
+      },
+    ],
+  },
+  {
+    id: 3,
+    slug: 'vocabspedia',
+    title: 'Vocabspedia',
+    subtitle: "Kerala's PSC Exam Prep Platform",
+    image: vocabspediaImg,
+    description: 'A Flutter e-learning app for Kerala PSC exam aspirants — expert-led video courses, structured study materials, model exams, and previous year questions for Degree Level, LDC, LGS and more, with 50k+ students enrolled.',
+    tags: ['Flutter', 'GetX', 'Firebase', 'REST APIs'],
+    emoji: '📖',
+    category: 'E-Learning / Exam Prep',
+    github: '#',
+    appStore: 'https://apps.apple.com/ng/app/vocabspedia/id6757262116',
+    playStore: 'https://play.google.com/store/apps/details?id=com.app.vocabspedia&hl=en_IN',
+    featured: false,
+    rolesLabel: 'App Features',
+    roles: [
+      {
+        name: 'Course Enrollment',
+        icon: '🎓',
+        desc: 'Browse and enroll in batch-wise PSC courses like LDC, LGS, and Degree Level Prelims.',
+      },
+      {
+        name: 'Study Materials',
+        icon: '📚',
+        desc: 'Chapter-wise study materials and SCERT resources organized for structured learning.',
+      },
+      {
+        name: 'Video Classes',
+        icon: '🎥',
+        desc: 'Expert-led recorded and demo video lessons covering exam-relevant subjects.',
+      },
+      {
+        name: 'Mock Exams',
+        icon: '📝',
+        desc: 'Model exams and previous year question sets to track exam readiness.',
       },
     ],
   },

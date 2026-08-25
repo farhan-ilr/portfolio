@@ -3,6 +3,7 @@ import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import { Link } from 'react-scroll'
 import { FiGithub, FiLinkedin, FiArrowRight } from 'react-icons/fi'
 import Typewriter from './Typewriter'
+import Hero3D from './Hero3D'
 import { CONTACT_INFO } from '../utils/constants'
 
 const roles = [
@@ -82,6 +83,11 @@ export default function Hero() {
         />
       </div>
 
+      {/* ── Floating tech icons ── */}
+      <div className="absolute inset-0 opacity-30 md:opacity-45 hidden sm:block">
+        <Hero3D />
+      </div>
+
       {/* ── Content ── */}
       <motion.div
         variants={container}
@@ -122,7 +128,7 @@ export default function Hero() {
           I build{' '}
           <span className="text-white font-medium">pixel-perfect, high-performance</span>{' '}
           mobile apps with Flutter — from concept to App Store.{' '}
-          <span className="text-white font-medium">3+ years, 70+ apps shipped.</span>
+          <span className="text-white font-medium">3+ years, 50+ apps shipped.</span>
         </motion.p>
 
         {/* ── CTA buttons ── */}

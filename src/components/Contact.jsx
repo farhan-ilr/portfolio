@@ -1,15 +1,22 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
-import { FiGithub, FiMail, FiMapPin, FiSend, FiCheck } from 'react-icons/fi'
+import { FiMail, FiMapPin, FiSend, FiCheck, FiLinkedin } from 'react-icons/fi'
+import { SiGithub } from 'react-icons/si'
 import { CONTACT_INFO } from '../utils/constants'
 
 const INFO = [
   {
-    icon: FiGithub,
+    icon: SiGithub,
     label: 'GitHub',
-    value: 'github.com/farhan-ilr',
+    value: 'Farhan',
     href: CONTACT_INFO.github,
+  },
+  {
+    icon: FiLinkedin,
+    label: 'LinkedIn',
+    value: 'Farhan Nazar',
+    href: CONTACT_INFO.linkedin,
   },
   {
     icon: FiMail,
@@ -95,35 +102,29 @@ export default function Contact() {
                     href={item.href}
                     target={item.href.startsWith('http') ? '_blank' : undefined}
                     rel="noopener noreferrer"
-                    className="group flex items-center gap-5 p-5 rounded-2xl border border-border bg-card
-                               hover:border-accent/40 hover:bg-card-2 transition-all duration-250"
+                    className="group flex items-center gap-4 py-3.5 border-b border-border/60
+                               last:border-b-0 transition-colors duration-200 hover:border-white/20"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/15
-                                    flex items-center justify-center flex-shrink-0
-                                    group-hover:bg-accent/20 transition-colors duration-200">
-                      <item.icon size={17} className="text-accent-light" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[10px] font-mono tracking-widest uppercase text-muted mb-0.5">
+                    <item.icon size={16} className="text-muted flex-shrink-0
+                                                     group-hover:text-white transition-colors duration-200" />
+                    <div className="min-w-0 flex items-baseline gap-2.5">
+                      <p className="text-[10px] font-mono tracking-widest uppercase text-muted/70 flex-shrink-0">
                         {item.label}
                       </p>
-                      <p className="text-white text-sm font-medium truncate
-                                    group-hover:text-accent-light transition-colors duration-200">
+                      <p className="text-white/90 text-sm truncate
+                                    group-hover:text-white transition-colors duration-200">
                         {item.value}
                       </p>
                     </div>
                   </a>
                 ) : (
-                  <div className="flex items-center gap-5 p-5 rounded-2xl border border-border bg-card">
-                    <div className="w-10 h-10 rounded-xl bg-accent/10 border border-accent/15
-                                    flex items-center justify-center flex-shrink-0">
-                      <item.icon size={17} className="text-accent-light" />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[10px] font-mono tracking-widest uppercase text-muted mb-0.5">
+                  <div className="flex items-center gap-4 py-3.5 border-b border-border/60 last:border-b-0">
+                    <item.icon size={16} className="text-muted flex-shrink-0" />
+                    <div className="min-w-0 flex items-baseline gap-2.5">
+                      <p className="text-[10px] font-mono tracking-widest uppercase text-muted/70 flex-shrink-0">
                         {item.label}
                       </p>
-                      <p className="text-white text-sm font-medium">{item.value}</p>
+                      <p className="text-white/90 text-sm">{item.value}</p>
                     </div>
                   </div>
                 )}
