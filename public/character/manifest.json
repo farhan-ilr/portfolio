@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "source": "original-video.mp4 (1920x1080, 24fps, 10s)",
+  "width": 880,
+  "height": 720,
+  "center": "character/optimized/f213.webp",
+  "rays": {
+    "right": [
+      {
+        "src": "character/optimized/f039.webp",
+        "frame": 39
+      },
+      {
+        "src": "character/optimized/f041.webp",
+        "frame": 41
+      },
+      {
+        "src": "character/optimized/f043.webp",
+        "frame": 43
+      },
+      {
+        "src": "character/optimized/f045.webp",
+        "frame": 45
+      },
+      {
+        "src": "character/optimized/f047.webp",
+        "frame": 47
+      },
+      {
+        "src": "character/optimized/f049.webp",
+        "frame": 49
+      },
+      {
+        "src": "character/optimized/f051.webp",
+        "frame": 51
+      },
+      {
+        "src": "character/optimized/f053.webp",
+        "frame": 53
+      }
+    ],
+    "left": [
+      {
+        "src": "character/optimized/f065.webp",
+        "frame": 65
+      },
+      {
+        "src": "character/optimized/f068.webp",
+        "frame": 68
+      },
+      {
+        "src": "character/optimized/f071.webp",
+        "frame": 71
+      },
+      {
+        "src": "character/optimized/f074.webp",
+        "frame": 74
+      },
+      {
+        "src": "character/optimized/f077.webp",
+        "frame": 77
+      },
+      {
+        "src": "character/optimized/f080.webp",
+        "frame": 80
+      },
+      {
+        "src": "character/optimized/f083.webp",
+        "frame": 83
+      },
+      {
+        "src": "character/optimized/f086.webp",
+        "frame": 86
+      },
+      {
+        "src": "character/optimized/f089.webp",
+        "frame": 89
+      },
+      {
+        "src": "character/optimized/f092.webp",
+        "frame": 92
+      },
+      {
+        "src": "character/optimized/f095.webp",
+        "frame": 95
+      },
+      {
+        "src": "character/optimized/f098.webp",
+        "frame": 98
+      },
+      {
+        "src": "character/optimized/f101.webp",
+        "frame": 101
+      }
+    ],
+    "up": [
+      {
+        "src": "character/optimized/f113.webp",
+        "frame": 113
+      },
+      {
+        "src": "character/optimized/f116.webp",
+        "frame": 116
+      },
+      {
+        "src": "character/optimized/f119.webp",
+        "frame": 119
+      },
+      {
+        "src": "character/optimized/f122.webp",
+        "frame": 122
+      },
+      {
+        "src": "character/optimized/f125.webp",
+        "frame": 125
+      },
+      {
+        "src": "character/optimized/f128.webp",
+        "frame": 128
+      },
+      {
+        "src": "character/optimized/f131.webp",
+        "frame": 131
+      },
+      {
+        "src": "character/optimized/f134.webp",
+        "frame": 134
+      },
+      {
+        "src": "character/optimized/f137.webp",
+        "frame": 137
+      },
+      {
+        "src": "character/optimized/f140.webp",
+        "frame": 140
+      },
+      {
+        "src": "character/optimized/f143.webp",
+        "frame": 143
+      },
+      {
+        "src": "character/optimized/f145.webp",
+        "frame": 145
+      }
+    ],
+    "down": [
+      {
+        "src": "character/optimized/f157.webp",
+        "frame": 157
+      },
+      {
+        "src": "character/optimized/f159.webp",
+        "frame": 159
+      },
+      {
+        "src": "character/optimized/f161.webp",
+        "frame": 161
+      },
+      {
+        "src": "character/optimized/f163.webp",
+        "frame": 163
+      },
+      {
+        "src": "character/optimized/f165.webp",
+        "frame": 165
+      },
+      {
+        "src": "character/optimized/f167.webp",
+        "frame": 167
+      },
+      {
+        "src": "character/optimized/f169.webp",
+        "frame": 169
+      }
+    ]
+  },
+  "blink": {
+    "center": "character/optimized/f175.webp",
+    "left": "character/optimized/f107.webp",
+    "up": "character/optimized/f151.webp",
+    "right": "character/optimized/f175.webp",
+    "down": "character/optimized/f175.webp"
+  },
+  "notes": {
+    "right": "Mild only: the video never looks far right.",
+    "down": "Lids lowered and chin dipped; no wide-open downward gaze exists in the video.",
+    "blink": "No closed-eye frame exists in the centre pose; the nearest real blink frame is used."
+  }
+}

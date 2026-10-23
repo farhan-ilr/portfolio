@@ -4,6 +4,7 @@ import { Link } from 'react-scroll'
 import { FiGithub, FiLinkedin, FiArrowRight } from 'react-icons/fi'
 import Typewriter from './Typewriter'
 import Hero3D from './Hero3D'
+import CharacterStage from './character/CharacterStage'
 import { CONTACT_INFO } from '../utils/constants'
 
 const roles = [
@@ -88,18 +89,25 @@ export default function Hero() {
         <Hero3D />
       </div>
 
-      {/* ── Content ── */}
+      {/* ── Content + interactive character ── */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 pt-20 lg:pt-8 grid lg:grid-cols-2 items-center gap-2 lg:gap-6">
+
+      {/* Character: above the text on mobile, to the right on desktop. Its gaze follows the cursor. */}
+      <div className="order-1 lg:order-2 relative h-[300px] sm:h-[400px] lg:h-[min(82vh,760px)]">
+        <CharacterStage />
+      </div>
+
       <motion.div
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative z-10 text-center px-4 sm:px-6 max-w-5xl mx-auto"
+        className="order-2 lg:order-1 text-center lg:text-left"
       >
 
         {/* Name */}
         <motion.h1
           variants={fadeUp}
-          className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tighter leading-none mb-5 pt-10 md:pt-14"
+          className="text-5xl sm:text-6xl xl:text-7xl font-black tracking-tighter leading-none mb-5 pt-2 lg:pt-0"
         >
           <span className="text-white">Hi, I&apos;m </span>
           <motion.span
@@ -123,7 +131,7 @@ export default function Hero() {
         {/* Description */}
         <motion.p
           variants={fadeUp}
-          className="text-muted text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-relaxed mb-12 text-balance"
+          className="text-muted text-sm sm:text-base md:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed mb-10 text-balance"
         >
           I build{' '}
           <span className="text-white font-medium">pixel-perfect, high-performance</span>{' '}
@@ -134,7 +142,7 @@ export default function Hero() {
         {/* ── CTA buttons ── */}
         <motion.div
           variants={fadeUp}
-          className="flex items-center justify-center gap-3 mb-14"
+          className="flex items-center justify-center lg:justify-start gap-3 mb-10"
         >
           {/* Explore My Work */}
           <Link to="projects" smooth duration={600} offset={-80}>
@@ -174,8 +182,8 @@ export default function Hero() {
         </motion.div>
 
         {/* Socials */}
-        <motion.div variants={fadeUp} className="flex items-center justify-center gap-5">
-          <div className="h-px w-12 bg-gradient-to-r from-transparent to-border" />
+        <motion.div variants={fadeUp} className="flex items-center justify-center lg:justify-start gap-5">
+          <div className="h-px w-12 bg-gradient-to-r from-transparent to-border lg:hidden" />
           {[
             { href: CONTACT_INFO.github,   Icon: FiGithub },
             { href: CONTACT_INFO.linkedin, Icon: FiLinkedin },
@@ -198,6 +206,7 @@ export default function Hero() {
           <div className="h-px w-12 bg-gradient-to-l from-transparent to-border" />
         </motion.div>
       </motion.div>
+      </div>
 
       {/* Scroll indicator */}
       <motion.div
