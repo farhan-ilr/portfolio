@@ -1,174 +1,146 @@
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
+import { motion, AnimatePresence, useMotionValue, useSpring, useReducedMotion } from 'framer-motion'
+import { Link } from 'react-router-dom'
+import { FiArrowUpRight } from 'react-icons/fi'
 import { useScrollAnimation } from '../hooks/useScrollAnimation'
-import { FiArrowRight } from 'react-icons/fi'
-import { SiAppstore, SiGoogleplay } from 'react-icons/si'
 import { PROJECTS } from '../utils/constants'
 
-function ProjectCard({ project, index, isInView }) {
-  const navigate = useNavigate()
-  const [loaded, setLoaded] = useState(false)
+const pad = (n) => String(n).padStart(2, '0')
 
+function Row({ project, index, dimmed, onActive }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
-      onClick={() => navigate(`/projects/${project.slug}`)}
-      className="group rounded-2xl border border-border bg-card overflow-hidden cursor-pointer
-                 hover:border-accent/30 transition-all duration-300 hover:shadow-glow-sm"
+    <motion.li
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      className="border-t border-border"
     >
-      {/* 16:9 Image / Placeholder */}
-      <div className="relative w-full aspect-video bg-gradient-to-br from-white/5 via-card to-card-2
-                      overflow-hidden">
-        <div className="absolute inset-0 bg-grid-black opacity-40" />
-
-        {project.image ? (
-          <>
-            <AnimatePresence>
-              {!loaded && (
-                <motion.div
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="absolute inset-0 flex items-center justify-center"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-card via-card-2/60 to-card
-                                  bg-[length:200%_100%] animate-shimmer" />
-                  <motion.span
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 0.9, repeat: Infinity, ease: 'linear' }}
-                    className="relative w-8 h-8 rounded-full border-2 border-accent/25 border-t-accent-light"
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <motion.img
-              src={project.image}
-              alt={project.title}
-              onLoad={() => setLoaded(true)}
-              initial={{ opacity: 0, scale: 1.04 }}
-              animate={loaded ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-0 w-full h-full object-cover"
-            />
-          </>
-        ) : (
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-            <motion.span
-              animate={{ y: [0, -6, 0] }}
-              transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: index * 0.4 }}
-              className="text-5xl drop-shadow-xl"
-            >
-              {project.emoji}
-            </motion.span>
-          </div>
+      <Link
+        to={`/projects/${project.slug}`}
+        onMouseEnter={() => onActive(index)}
+        onMouseLeave={() => onActive(null)}
+        onFocus={() => onActive(index)}
+        onBlur={() => onActive(null)}
+        aria-label={`${project.title} — ${project.subtitle}`}
+        className={`group block py-7 md:py-10 outline-none transition-opacity duration-300 focus-visible:bg-white/[0.03] ${dimmed ? 'md:opacity-[0.35]' : ''}`}
+      >
+        {/* Phones have no hover, so the cover sits inline instead of floating. */}
+        {project.image && (
+          <img
+            src={project.image}
+            alt=""
+            loading="lazy"
+            className="md:hidden mb-5 w-full aspect-[2/1] object-cover rounded-md border border-border"
+          />
         )}
 
-      </div>
+        <div className="grid md:grid-cols-12 gap-x-6 gap-y-3 items-start">
+          <span className="hidden md:block md:col-span-1 pt-3 font-mono text-xs text-muted">{pad(index + 1)}</span>
 
-      {/* Card body */}
-      <div className="p-5">
-        {/* Category + store icons row */}
-        <div className="flex items-center justify-between gap-3 mb-3">
-          {project.category ? (
-            <span className="px-2.5 py-1 rounded-lg bg-accent/10 border border-accent/20
-                             text-accent-light text-[10px] font-mono tracking-widest uppercase">
-              {project.category}
-            </span>
-          ) : <span />}
+          <div className="md:col-span-6">
+            <h3 className="text-3xl md:text-5xl font-semibold tracking-tight text-zinc-200 transition-all duration-300 group-hover:text-white md:group-hover:translate-x-3 group-focus-visible:text-white">
+              {project.title}
+            </h3>
+            <p className="mt-2 text-sm md:text-base text-muted">{project.subtitle}</p>
+          </div>
 
-          {(project.appStore || project.playStore) && (
-            <div className="flex items-center gap-2 flex-shrink-0">
-              {project.appStore && (
-                <a href={project.appStore} target="_blank" rel="noopener noreferrer"
-                  onClick={e => e.stopPropagation()}
-                  className="text-muted hover:text-white transition-colors">
-                  <SiAppstore size={15} />
-                </a>
-              )}
-              {project.playStore && (
-                <a href={project.playStore} target="_blank" rel="noopener noreferrer"
-                  onClick={e => e.stopPropagation()}
-                  className="text-muted hover:text-white transition-colors">
-                  <SiGoogleplay size={15} />
-                </a>
-              )}
-            </div>
-          )}
+          <div className="md:col-span-4 md:pt-2 text-sm leading-relaxed">
+            <p className="text-muted-fg">{project.category}</p>
+            <p className="mt-1 text-muted">{project.tags.slice(0, 4).join(' / ')}</p>
+          </div>
+
+          <FiArrowUpRight
+            aria-hidden
+            size={26}
+            className="hidden md:block md:col-span-1 justify-self-end mt-2 text-muted transition-all duration-300 group-hover:text-accent-light group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          />
         </div>
+      </Link>
+    </motion.li>
+  )
+}
 
-        <h3 className="text-white font-bold text-lg mb-1.5 group-hover:text-accent-light transition-colors">
-          {project.title}
-        </h3>
-        <p className="text-muted text-sm leading-relaxed mb-4 line-clamp-3">
-          {project.description}
-        </p>
-
-        {/* View link */}
-        <div className="flex items-center gap-2 text-sm font-medium text-accent-light
-                        group-hover:text-white transition-colors">
-          View Project
-          <FiArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
-        </div>
-      </div>
-    </motion.div>
+/** Cover image that trails the cursor while a row is hovered. Position is driven by motion values, so no re-renders on move. */
+function Preview({ project, x, y }) {
+  return (
+    <AnimatePresence>
+      {project?.image && (
+        <motion.div
+          key="preview"
+          style={{ x, y }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          aria-hidden
+          className="pointer-events-none fixed left-0 top-0 z-30 hidden md:block [@media(hover:none)]:!hidden"
+        >
+          <AnimatePresence mode="popLayout">
+            <motion.img
+              key={project.slug}
+              src={project.image}
+              alt=""
+              initial={{ opacity: 0, scale: 1.06 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="w-[360px] aspect-[2/1] object-cover rounded-md border border-white/10 shadow-2xl shadow-black/60"
+            />
+          </AnimatePresence>
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 }
 
 export default function Projects() {
   const { ref, isInView } = useScrollAnimation()
+  const reduced = useReducedMotion()
+  const [active, setActive] = useState(null)
+  const mx = useMotionValue(0)
+  const my = useMotionValue(0)
+  const sx = useSpring(mx, { stiffness: 260, damping: 30, mass: 0.6 })
+  const sy = useSpring(my, { stiffness: 260, damping: 30, mass: 0.6 })
+
+  const onMove = (e) => {
+    // Below-right of the cursor, so the cover lands on the next (dimmed) row, not the hovered row's own text.
+    const nx = e.clientX + 28
+    const ny = e.clientY + 28
+    mx.set(nx)
+    my.set(ny)
+    if (reduced) { sx.jump(nx); sy.jump(ny) }
+  }
 
   return (
-    <section id="projects" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
-      <div className="absolute inset-0 bg-grid-black opacity-60 pointer-events-none" />
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-64 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse, rgba(225,29,72,0.05) 0%, transparent 70%)' }} />
-
-      <div ref={ref} className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        {/* Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-14">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-flex items-center gap-2 text-xs font-mono text-accent-light
-                             tracking-[0.2em] uppercase mb-3">
-              <span className="w-4 h-px bg-accent" />
-              portfolio
-            </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white leading-tight">
-              My Projects
-            </h2>
-          </motion.div>
-          <motion.p
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-muted text-sm max-w-xs text-left sm:text-right leading-relaxed"
-          >
-            Real-world apps I&apos;ve designed, built, and shipped.
-          </motion.p>
-        </div>
-
+    <section id="projects" className="py-24 md:py-36 bg-secondary">
+      <div ref={ref} className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ scaleX: 0 }}
-          animate={isInView ? { scaleX: 1 } : {}}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          style={{ originX: 0 }}
-          className="h-px bg-gradient-to-r from-accent/60 via-accent-2/30 to-transparent mb-14"
-        />
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="mb-12 md:mb-16"
+        >
+          <h2 className="text-4xl md:text-6xl font-semibold tracking-tight text-white">
+            Selected work
+            <sup className="ml-2 align-top font-mono text-sm font-normal text-muted">({pad(PROJECTS.length)})</sup>
+          </h2>
+        </motion.div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <ul onMouseMove={onMove} className="border-b border-border">
           {PROJECTS.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} isInView={isInView} />
+            <Row
+              key={project.id}
+              project={project}
+              index={i}
+              dimmed={active !== null && active !== i}
+              onActive={setActive}
+            />
           ))}
-        </div>
-
+        </ul>
       </div>
+
+      <Preview project={active !== null ? PROJECTS[active] : null} x={sx} y={sy} />
     </section>
   )
 }
