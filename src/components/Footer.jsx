@@ -95,6 +95,13 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* ── Location keywords (SEO) ── */}
+        <p className="text-muted-fg/60 text-[11px] leading-relaxed mb-6 max-w-3xl">
+          Flutter developer in Kerala — Kerala Flutter developer &amp; Android developer based in
+          Kottakkal, Malappuram. Available for freelance Flutter app development in Kochi,
+          Kozhikode (Calicut), Thrissur, Thiruvananthapuram and across Kerala, India.
+        </p>
+
         {/* ── Bottom bar ── */}
         <div className="border-t border-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-muted-fg text-[11px] font-mono">
