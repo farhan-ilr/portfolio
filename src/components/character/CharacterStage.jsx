@@ -97,18 +97,21 @@ export default function CharacterStage({ className = '' }) {
           </Canvas>
         </Boundary>
       )}
-      <motion.img
-        src={assetUrl(POSTER)}
-        alt="Cartoon portrait of Farhan"
-        fetchpriority="high"
-        decoding="async"
-        draggable={false}
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: ready ? 0 : 1, y: 0 }}
-        transition={{ opacity: { duration: ready ? 0.6 : 0.9 }, y: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } }}
-        className="pointer-events-none select-none absolute left-1/2 -translate-x-1/2 [height:min(98cqh,81.8cqw)]"
-        style={{ bottom: '-2cqh', aspectRatio: '880 / 720' }}
-      />
+      {/* Wrapper centres the poster: framer-motion's inline transform would override a translate-based centring. */}
+      <div className="pointer-events-none absolute inset-x-0 flex justify-center" style={{ bottom: '-2cqh' }}>
+        <motion.img
+          src={assetUrl(POSTER)}
+          alt="Cartoon portrait of Farhan"
+          fetchpriority="high"
+          decoding="async"
+          draggable={false}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: ready ? 0 : 1, y: 0 }}
+          transition={{ opacity: { duration: ready ? 0.6 : 0.9 }, y: { duration: 0.9, ease: [0.22, 1, 0.36, 1] } }}
+          className="select-none [height:min(98cqh,81.8cqw)]"
+          style={{ aspectRatio: '880 / 720' }}
+        />
+      </div>
     </div>
   )
 }

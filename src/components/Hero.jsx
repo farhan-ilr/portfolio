@@ -93,7 +93,7 @@ export default function Hero() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 pt-20 lg:pt-8 grid lg:grid-cols-2 items-center gap-2 lg:gap-6">
 
       {/* Character: above the text on mobile, to the right on desktop. Its gaze follows the cursor. */}
-      <div className="order-1 lg:order-2 relative h-[300px] sm:h-[400px] lg:h-[min(82vh,760px)]">
+      <div className="order-1 lg:order-2 relative h-[300px] sm:h-[400px] lg:h-auto lg:aspect-[880/720] lg:w-[min(106%,calc(86vh*1.2222))] lg:justify-self-center">
         <CharacterStage />
       </div>
 
